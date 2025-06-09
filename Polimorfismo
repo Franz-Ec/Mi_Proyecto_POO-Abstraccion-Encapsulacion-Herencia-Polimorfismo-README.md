@@ -1,0 +1,33 @@
+4. Polimorfismo
+Concepto: Objetos de diferentes clases pueden responder al mismo método de maneras distintas (gracias a la herencia y sobreescritura).
+
+Ejemplo: Usando las clases Perro y Gato anteriores, podemos tener una función que acepte cualquier Animal y llame a hacer_sonido().
+
+Python
+
+# Polimorfismo/formas_sonido.py
+from Herencia.animales import Perro, Gato # Importa las clases creadas en herencia
+
+def escuchar_animal(animal):
+    """
+    Función polimórfica que llama al método hacer_sonido() de cualquier objeto Animal.
+    """
+    animal.hacer_sonido()
+
+# Uso:
+perro_poli = Perro("Bobby", "Golden")
+gato_poli = Gato("Mittens", "negro")
+
+escuchar_animal(perro_poli) # Llama a Perro.hacer_sonido()
+escuchar_animal(gato_poli)  # Llama a Gato.hacer_sonido()
+
+# Otro ejemplo de polimorfismo: Overloading (aunque Python no lo soporta de forma nativa como Java/C#)
+# y Overriding (que ya vimos en herencia)
+# También se puede ver con Duck Typing en Python: "Si camina como pato y grazna como pato, es un pato."
+# Si un objeto tiene el método `hacer_sonido()`, podemos llamarlo.
+class Pato:
+    def hacer_sonido(self):
+        print("¡Cuac! ¡Cuac!")
+
+mi_pato = Pato()
+escuchar_animal(mi_pato) # Funciona porque Pato tiene el método hacer_sonido()
