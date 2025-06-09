@@ -1,0 +1,36 @@
+2. Encapsulación
+Concepto: Agrupar datos y métodos que operan sobre esos datos, y controlar el acceso a ellos.
+
+Ejemplo: Una clase CuentaBancaria con un saldo que no puede ser modificado directamente, solo a través de métodos de depósito y retiro.
+
+Python
+
+# Encapsulacion/cuenta_bancaria.py
+class CuentaBancaria:
+    def __init__(self, titular, saldo_inicial=0):
+        self.titular = titular
+        self.__saldo = saldo_inicial # '__' indica que es un atributo "privado"
+
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self.__saldo += cantidad
+            print(f"Depósito de ${cantidad} realizado. Saldo actual: ${self.__saldo}")
+        else:
+            print("La cantidad a depositar debe ser positiva.")
+
+    def retirar(self, cantidad):
+        if 0 < cantidad <= self.__saldo:
+            self.__saldo -= cantidad
+            print(f"Retiro de ${cantidad} realizado. Saldo actual: ${self.__saldo}")
+        else:
+            print("Cantidad a retirar inválida o saldo insuficiente.")
+
+    def obtener_saldo(self):
+        return self.__saldo
+
+# Uso:
+cuenta = CuentaBancaria("Juan Pérez", 1000)
+# print(cuenta.__saldo) # Esto generaría un error de acceso
+cuenta.depositar(500)
+cuenta.retirar(200)
+print(f"Saldo final de {cuenta.titular}: ${cuenta.obtener_saldo()}")
