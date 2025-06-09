@@ -1,0 +1,43 @@
+3. Herencia
+Concepto: Una clase (hija) hereda atributos y métodos de otra clase (padre).
+
+Ejemplo: Una clase Animal y luego Perro y Gato que heredan de Animal.
+
+Python
+
+# Herencia/animales.py
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hacer_sonido(self):
+        raise NotImplementedError("Este método debe ser sobrescrito por las subclases")
+
+    def moverse(self):
+        print(f"{self.nombre} se está moviendo.")
+
+class Perro(Animal): # Perro hereda de Animal
+    def __init__(self, nombre, raza):
+        super().__init__(nombre) # Llama al constructor de la clase padre
+        self.raza = raza
+
+    def hacer_sonido(self): # Sobrescribe el método hacer_sonido
+        print(f"{self.nombre} (un {self.raza}) ladra: ¡Guau! ¡Guau!")
+
+class Gato(Animal): # Gato hereda de Animal
+    def __init__(self, nombre, color):
+        super().__init__(nombre)
+        self.color = color
+
+    def hacer_sonido(self): # Sobrescribe el método hacer_sonido
+        print(f"{self.nombre} (un gato {self.color}) maulla: ¡Miau!")
+
+# Uso:
+mi_perro = Perro("Max", "Labrador")
+mi_gato = Gato("Luna", "blanco")
+
+mi_perro.moverse()
+mi_perro.hacer_sonido()
+
+mi_gato.moverse()
+mi_gato.hacer_sonido()
